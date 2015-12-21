@@ -1,0 +1,8 @@
+#查詢30分鐘以內有易動的檔案 刪除之後並寫入log
+
+find /_jsp/* -mmin -30 -exec \rm -r {} \;
+
+find / -name "core" -print | xargs echo "" >/tmp/core.log
+
+查詢30分鐘內有變動的檔案 進行刪除之後並寫入log
+find /home/aaaaa/* -mmin -30 | tee -a /home/alTest/sendLog.log | xargs rm -rf
