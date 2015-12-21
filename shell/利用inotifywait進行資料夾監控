@@ -1,0 +1,52 @@
+#!/bin/bash
+#
+#
+#鎖定目錄
+src=/tw
+#movePath=/home/alTest/move/
+#排除目錄
+exclude=WEB-INF
+#jsp工作目錄
+jspWorkPath=/WEB-INF/www_work
+#rsync來緣路徑
+sourcePath=/home/alTest/twBack/tw
+
+/usr/local/bin/inotifywait --excludei '.img$|.jpg$|.xml$|.gif$' --format '%w %e %f' -mqr -e create,moved_to,delete $src |  while read w e f
+
+do
+  if [ "$1" != "do" ];then
+    echo "測試模式"
+  fi
+echo $(date '+%Y%m%d%H%M%S') "事件 :"$e
+echo $(date '+%Y%m%d%H%M%S') "觸發檔案 :"$w$f
+#rsync要複製的相對路徑
+path=${w##$src}
+echo $(date '+%Y%m%d%H%M%S') "rsync備份路徑 "$path
+
+if [ "$(expr index $path $exclude)" -eq "0" ];then
+#建立備份
+#cp $w$f $movePath
+echo $(date '+%Y%m%d%H%M%S') "rsync備份開始 : rsync -dlptgoD --delete $sourcePath$path $w"
+  if [ "$1" == "do" ];then
+    rsync -dlptgoD --delete $sourcePath$path $w
+  fi
+#jsp工作目錄的相對路徑
+jspPath=/_jsp
+arr1=$(echo $path | tr "/" "\n")
+for x1 in $arr1
+do
+    jspPath=$jspPath\/\_$x1
+done
+
+#開始對產出來的class進行刪除
+echo $(date '+%Y%m%d%H%M%S') "開始對class進行刪除 : \rm $jspWorkPath$jspPath/*"
+  if [ "$1" == "do" ];then
+    \rm $jspWorkPath$jspPath/*
+  fi
+    #開始送訊息
+    if [ $e = "DELETE" ];then
+        echo $(date '+%Y%m%d%H%M%S') "開始送訊息"
+        echo "send"
+    fi
+fi
+done
