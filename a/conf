@@ -1,0 +1,16 @@
+//壓縮
+LoadModule deflate_module     modules/mod_deflate.so
+<ifmodule mod_deflate.c>
+DeflateCompressionLevel 9
+AddOutputFilterByType DEFLATE text/html text/plain text/xml application/x-httpd-php image/png image/jpeg
+AddOutputFilter DEFLATE js css png jpg jsp
+</ifmodule>
+
+
+//開啟暫存
+ExpiresActive On
+ExpiresByType application/javascript "access plus 1 week"
+ExpiresByType application/x-javascript "access plus 1 week"
+ExpiresByType text/css "access plus 1 week"
+ExpiresByType image/png "access plus 1 week"
+ExpiresByType image/jpeg "access plus 1 week"
