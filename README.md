@@ -7,4 +7,4 @@ date
 
 //修改系統時區
 
-ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+ln -sf /usr/share/zoneinfo/Asia/Taipei /etc/localtime
