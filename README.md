@@ -8,3 +8,11 @@ date
 //修改系統時區
 
 ln -sf /usr/share/zoneinfo/Asia/Taipei /etc/localtime
+
+
+# port
+
+netstat -lptu
+
+netstat -tulpn
+
