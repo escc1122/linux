@@ -16,3 +16,7 @@ netstat -lptu
 
 netstat -tulpn
 
+
+
+sed -i "s/.*PasswordAuthentication.*/PasswordAuthentication no/g" /etc/ssh/sshd_config
+
