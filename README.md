@@ -23,3 +23,7 @@ sed -i "s/.*PasswordAuthentication.*/PasswordAuthentication no/g" /etc/ssh/sshd_
 sed -i "s/#*PasswordAuthentication.*/PasswordAuthentication no/g" /etc/ssh/sshd_config
 
 sed -i "s/#*UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config
+
+
+
+https://dotblogs.com.tw/Echo/2017/06/28/Linux_AuthorizedKeys_Setting
