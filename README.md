@@ -10,6 +10,7 @@ date
 ln -sf /usr/share/zoneinfo/Asia/Taipei /etc/localtime
 
 //nginx
+
 systemctl enable nginx
 
 
