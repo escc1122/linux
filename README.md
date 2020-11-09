@@ -34,3 +34,6 @@ https://dotblogs.com.tw/Echo/2017/06/28/Linux_AuthorizedKeys_Setting
 
 
 find . -type f -print0 | xargs -0 dos2unix
+
+# 清 30 天前log
+find /opt/soft/log/ -mtime +30 -name "*.log" -exec rm -rf {} /;
